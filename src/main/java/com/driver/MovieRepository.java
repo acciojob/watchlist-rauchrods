@@ -74,28 +74,28 @@ public class MovieRepository {
         for(String s:li) {
             hs.add(s);
         }
-        for(int i=0;i<movielist.size();i++){
-            if(hs.contains(movielist.get(i).getName())){
-                movielist.remove(i);
-            }
-        }
-
-//        for(Movie movie:movielist){
-//            if(hs.contains(movie.getName())){
-//                movielist.remove(movie);
+//        for(int i=0;i<movielist.size();i++){
+//            if(hs.contains(movielist.get(i).getName())){
+//                movielist.remove(i);
 //            }
 //        }
-        for(int i=0;i<directorlist.size();i++){
-            if(hs.contains(directorlist.get(i).getName())){
-                directorlist.remove(i);
+
+        for(Movie movie:movielist){
+            if(hs.contains(movie.getName())){
+                movielist.remove(movie);
             }
         }
-
-//        for(Director director:directorlist){
-//            if(director.getName().equals(directorname)){
-//                directorlist.remove(director);
+//        for(int i=0;i<directorlist.size();i++){
+//            if(hs.contains(directorlist.get(i).getName())){
+//                directorlist.remove(i);
 //            }
 //        }
+
+        for(Director director:directorlist){
+            if(director.getName().equals(directorname)){
+                directorlist.remove(director);
+            }
+        }
          return "success";
     }
 
@@ -105,17 +105,17 @@ public class MovieRepository {
           for(String s:li) hs.add(s);
        }
 
-        for(int i=0;i<movielist.size();i++){
-            if(hs.contains(movielist.get(i).getName())){
-                movielist.remove(i);
-            }
-        }
+//        for(int i=0;i<movielist.size();i++){
+//            if(hs.contains(movielist.get(i).getName())){
+//                movielist.remove(i);
+//            }
+//        }
 
-//       for(Movie movie:movielist){
-//           if(hs.contains(movie.getName())){
-//               movielist.remove(movie);
-//           }
-//       }
+       for(Movie movie:movielist){
+           if(hs.contains(movie.getName())){
+               movielist.remove(movie);
+           }
+       }
        hm.clear();
        directorlist.clear();
        return "success";
