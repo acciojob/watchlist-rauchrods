@@ -1,5 +1,8 @@
 package com.driver;
 
+import org.springframework.stereotype.Component;
+
+
 public class Movie {
     private String name;
     private int durationInMinutes;
