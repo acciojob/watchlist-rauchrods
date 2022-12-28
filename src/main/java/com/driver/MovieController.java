@@ -18,14 +18,14 @@ public class MovieController {
 
 
     @PostMapping("/movies/add-movie")
-    ResponseEntity<String> addMovie (@RequestBody Movie movie){
+    public ResponseEntity<String> addMovie (@RequestBody Movie movie){
         String res =movieService.addMovie(movie);
 
         return  new ResponseEntity<>(res, HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/movies/add-director")
-    ResponseEntity<String> addDirector (@RequestBody Director director){
+    public ResponseEntity<String> addDirector (@RequestBody Director director){
         String res =movieService.addDirector(director);
 
         return  new ResponseEntity<>(res, HttpStatus.ACCEPTED);
@@ -33,7 +33,7 @@ public class MovieController {
 
     @PutMapping("/movies/add-movie-director-pair")
 
-    ResponseEntity<String> addMovieDirectorPair (@RequestParam("moviename") String moviename, @RequestParam("directorname") String directorname){
+    public ResponseEntity<String> addMovieDirectorPair (@RequestParam("moviename") String moviename, @RequestParam("directorname") String directorname){
         String res =movieService.addMovieDirectorPair(moviename,directorname);
 
         return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
@@ -41,7 +41,7 @@ public class MovieController {
 
 
     @GetMapping("/movies/get-movie-by-name/{name}")
-    ResponseEntity<Movie> getMovieByName (@PathVariable("name") String name){
+    public ResponseEntity<Movie> getMovieByName (@PathVariable("name") String name){
        Movie movie= movieService.getMovieByName(name);
        if(movie==null) return new ResponseEntity(movie,HttpStatus.BAD_REQUEST);
 
@@ -49,7 +49,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/get-director-by-name/{name}")
-    ResponseEntity<Director> getDirectorByName (@PathVariable("name") String name){
+    public ResponseEntity<Director> getDirectorByName (@PathVariable("name") String name){
          Director director = movieService.getDirectorByName(name);
 
         if(director==null) return new ResponseEntity(director,HttpStatus.BAD_REQUEST);
@@ -59,20 +59,20 @@ public class MovieController {
 
 
     @GetMapping("/movies/get-movies-by-director-name/{director}")
-    ResponseEntity<List<String>> getMoviesByDirectorName (@PathVariable("director") String directorname){
+    public ResponseEntity<List<String>> getMoviesByDirectorName (@PathVariable("director") String directorname){
        List<String> li =  movieService.getMoviesByDirectorName(directorname);
        return  new ResponseEntity<>(li,HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/movies/get-all-movies")
-    ResponseEntity<List<String>> findAllMovies(){
+    public ResponseEntity<List<String>> findAllMovies(){
         List<String> movienamelist = movieService.findAllMovies();
 
         return  new ResponseEntity<>(movienamelist,HttpStatus.OK);
     }
 
     @DeleteMapping("/movies/delete-director-by-name")
-    ResponseEntity<String> deleteDirectorByName (@RequestParam("director’s name") String directorname){
+    public ResponseEntity<String> deleteDirectorByName (@RequestParam("director’s name") String directorname){
         String res =movieService.deleteDirectorByName(directorname);
 
          return  new ResponseEntity<>(res,HttpStatus.ACCEPTED);
@@ -80,7 +80,7 @@ public class MovieController {
 
 
     @DeleteMapping("/movies/delete-all-directors")
-    ResponseEntity<String> deleteAllDirectors (){
+    public ResponseEntity<String> deleteAllDirectors (){
         String res = movieService.deleteAllDirectors();
         return  new ResponseEntity<>(res,HttpStatus.FOUND);
     }
