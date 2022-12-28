@@ -68,9 +68,22 @@ public class MovieRepository {
 
 
     String deleteDirectorByName (String directorname){
-
+        Set<String> hs = new HashSet<>();
+         List<String> li = hm.get(directorname);
          hm.remove(directorname);
-
+        for(String s:li) {
+            hs.add(s);
+        }
+        for(Movie movie:movielist){
+            if(hs.contains(movie.getName())){
+                movielist.remove(movie);
+            }
+        }
+        for(Director director:directorlist){
+            if(director.getName().equals(directorname)){
+                directorlist.remove(director);
+            }
+        }
          return "success";
     }
 
