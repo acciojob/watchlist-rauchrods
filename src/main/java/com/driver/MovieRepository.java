@@ -8,9 +8,9 @@ import java.util.*;
 @Repository
 public class MovieRepository {
 
-    List<Movie> movielist ;
-    List<Director> directorlist ;
-    Map<String,ArrayList<String>> hm;
+    public List<Movie> movielist ;
+    public List<Director> directorlist ;
+    public Map<String,ArrayList<String>> hm;
 
 
     public MovieRepository(){
