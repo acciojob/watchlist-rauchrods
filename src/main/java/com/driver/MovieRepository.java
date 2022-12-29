@@ -8,22 +8,28 @@ import java.util.*;
 @Repository
 public class MovieRepository {
 
-    List<Movie> movielist = new ArrayList<>();
-    List<Director> directorlist = new ArrayList<>();
+    List<Movie> movielist ;
+    List<Director> directorlist ;
+    Map<String,ArrayList<String>> hm;
 
-    Map<String,ArrayList<String>> hm= new HashMap<>();
 
-    String addMovie (Movie movie){
+    public MovieRepository(){
+        movielist= new ArrayList<>();
+        directorlist = new ArrayList<>();
+        hm= new HashMap<>();
+    }
+
+    public String addMovie (Movie movie){
        movielist.add(movie);
        return "success" ;
     }
 
-    String addDirector (Director director){
+    public String addDirector (Director director){
          directorlist.add(director);
          return "success";
     }
 
-    String addMovieDirectorPair (String moviename, String directorname){
+    public String addMovieDirectorPair (String moviename, String directorname){
 
        if(!hm.containsKey(directorname)){
            hm.put(directorname,new ArrayList<>());
@@ -34,7 +40,7 @@ public class MovieRepository {
 
     }
 
-    Movie getMovieByName (String name){
+    public Movie getMovieByName (String name){
         for(Movie movie: movielist){
             if(movie.getName().equals(name)){
                 return movie;
@@ -43,7 +49,7 @@ public class MovieRepository {
         return null;
     }
 
-    Director getDirectorByName (String name){
+    public Director getDirectorByName (String name){
 
         for(Director director: directorlist){
             if(director.getName().equals(name)){
@@ -53,12 +59,12 @@ public class MovieRepository {
           return null;
     }
 
-    List<String> getMoviesByDirectorName(String directorname){
+    public List<String> getMoviesByDirectorName(String directorname){
 
          return hm.get(directorname);
     }
 
-    List<String> findAllMovies(){
+    public List<String> findAllMovies(){
         List<String> movienamelist = new ArrayList<>();
         for(Movie movie:movielist){
             movienamelist.add(movie.getName());
@@ -67,7 +73,7 @@ public class MovieRepository {
     }
 
 
-    String deleteDirectorByName (String directorname){
+    public String deleteDirectorByName (String directorname){
         Set<String> hs = new HashSet<>();
          List<String> li = hm.get(directorname);
          hm.remove(directorname);
@@ -99,7 +105,7 @@ public class MovieRepository {
          return "success";
     }
 
-    String deleteAllDirectors (){
+    public String deleteAllDirectors (){
         Set<String> hs = new HashSet<>();
        for(List<String> li : hm.values()){
           for(String s:li) hs.add(s);
